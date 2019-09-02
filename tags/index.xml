@@ -6,10 +6,28 @@
     <description>Recent content in Tags on KEN 陳建權</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Mon, 15 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Sep 2019 15:27:20 +0800</lastBuildDate>
     
 	<atom:link href="https://kencc.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>tag1</title>
+      <link>https://kencc.github.io/tags/tag1/</link>
+      <pubDate>Mon, 02 Sep 2019 15:27:20 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/tags/tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag2</title>
+      <link>https://kencc.github.io/tags/tag2/</link>
+      <pubDate>Mon, 02 Sep 2019 15:27:20 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/tags/tag2/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>disqus</title>
