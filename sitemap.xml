@@ -8,7 +8,12 @@
   </url>
   
   <url>
-    <loc>https://kencc.github.io/categories/category/</loc>
+    <loc>https://kencc.github.io/tags/homebrew/</loc>
+    <lastmod>2019-09-02T15:36:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2019-09-02T15:36:52+08:00</lastmod>
   </url>
   
@@ -23,28 +28,33 @@
   </url>
   
   <url>
-    <loc>https://kencc.github.io/categories/subcategory/</loc>
-    <lastmod>2019-09-02T15:36:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/tags/tag1/</loc>
-    <lastmod>2019-09-02T15:36:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/tags/tag2/</loc>
-    <lastmod>2019-09-02T15:36:52+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kencc.github.io/tags/</loc>
     <lastmod>2019-09-02T15:36:52+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://kencc.github.io/2019/09/test3/</loc>
+    <loc>https://kencc.github.io/categories/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2019-09-02T15:36:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/categories/category/</loc>
+    <lastmod>2019-09-02T15:36:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/categories/subcategory/</loc>
+    <lastmod>2019-09-02T15:36:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/tag1/</loc>
+    <lastmod>2019-09-02T15:36:48+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/tag2/</loc>
+    <lastmod>2019-09-02T15:36:48+08:00</lastmod>
   </url>
   
   <url>
