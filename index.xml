@@ -6,10 +6,19 @@
     <description>Recent content on KEN 陳建權</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <lastBuildDate>Tue, 10 Sep 2019 23:38:03 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2019 15:01:02 +0800</lastBuildDate>
     
 	<atom:link href="https://kencc.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NVM Intro</title>
+      <link>https://kencc.github.io/2019/09/nvm-intro/</link>
+      <pubDate>Mon, 16 Sep 2019 15:01:02 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/09/nvm-intro/</guid>
+      <description>NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。</description>
+    </item>
     
     <item>
       <title>Homebrew - Mac 套件管理工具</title>
@@ -18,33 +27,6 @@
       
       <guid>https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
       <description>Homebrew 是一個專為 macOS 開發的套件管理工具，它就像是一個軟體管理中心，使用命令列介面(Command-Line Interface)操作，輸入指令就可以搜尋、下載、安裝你需要的軟體。</description>
-    </item>
-    
-    <item>
-      <title>Homebrew - Mac 套件管理工具</title>
-      <link>https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Mon, 02 Sep 2019 15:36:52 +0800</pubDate>
-      
-      <guid>https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
-      <description>Homebrew 是一個專為 macOS 開發的套件管理工具，它就像是一個軟體管理中心，使用命令列介面(Command-Line Interface)操作，輸入指令就可以搜尋、下載、安裝你需要的軟體。</description>
-    </item>
-    
-    <item>
-      <title>Test2</title>
-      <link>https://kencc.github.io/2019/09/test2/</link>
-      <pubDate>Mon, 02 Sep 2019 15:36:48 +0800</pubDate>
-      
-      <guid>https://kencc.github.io/2019/09/test2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Test</title>
-      <link>https://kencc.github.io/2019/09/test/</link>
-      <pubDate>Mon, 02 Sep 2019 15:27:20 +0800</pubDate>
-      
-      <guid>https://kencc.github.io/2019/09/test/</guid>
-      <description></description>
     </item>
     
     <item>

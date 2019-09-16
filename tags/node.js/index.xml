@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node.js on KEN 陳建權</title>
+    <link>https://kencc.github.io/tags/node.js/</link>
+    <description>Recent content in Node.js on KEN 陳建權</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 16 Sep 2019 15:01:02 +0800</lastBuildDate>
+    
+	<atom:link href="https://kencc.github.io/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NVM Intro</title>
+      <link>https://kencc.github.io/2019/09/nvm-intro/</link>
+      <pubDate>Mon, 16 Sep 2019 15:01:02 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/09/nvm-intro/</guid>
+      <description>NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。</description>
+    </item>
+    
+  </channel>
+</rss>
