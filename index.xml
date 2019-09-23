@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KEN 陳建權</title>
+    <link>https://kencc.github.io/</link>
+    <description>Recent content on KEN 陳建權</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 23 Sep 2019 15:03:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://kencc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo - 發佈網站到 GitHub Pages</title>
+      <link>https://kencc.github.io/2019/09/hugo-%E7%99%BC%E4%BD%88%E7%B6%B2%E7%AB%99%E5%88%B0-github-pages/</link>
+      <pubDate>Mon, 23 Sep 2019 15:03:40 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/09/hugo-%E7%99%BC%E4%BD%88%E7%B6%B2%E7%AB%99%E5%88%B0-github-pages/</guid>
+      <description>GitHub Pages 是免費的靜態網站託管服務，只要將網站的 HTML 檔案上傳到 GitHub 平台，就可以透過更新儲存庫的方式來管理你的網站，低成本而且容易管理，很適合開發者用來架設個人網站或展示專案火力的網站。</description>
+    </item>
+    
+    <item>
+      <title>使用 NVM 管理 Node.js 版本</title>
+      <link>https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/</link>
+      <pubDate>Mon, 16 Sep 2019 15:01:02 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/</guid>
+      <description>NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。</description>
+    </item>
+    
+    <item>
+      <title>Homebrew - Mac 套件管理工具</title>
+      <link>https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 10 Sep 2019 23:38:03 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+      <description>Homebrew 是一個專為 macOS 開發的套件管理工具，它就像是一個軟體管理中心，使用命令列介面(Command-Line Interface)操作，輸入指令就可以搜尋、下載、安裝你需要的軟體。</description>
+    </item>
+    
+  </channel>
+</rss>
