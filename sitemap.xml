@@ -4,7 +4,57 @@
   
   <url>
     <loc>https://kencc.github.io/categories/</loc>
-    <lastmod>2019-09-23T15:03:40+08:00</lastmod>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/node.js/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/npm/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/npx/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/2019/09/npx-npm-package-executor/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/post/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/</loc>
+    <lastmod>2019-09-30T22:42:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/tags/webpack/</loc>
+    <lastmod>2019-09-30T21:49:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85/</loc>
+    <lastmod>2019-09-30T21:49:53+08:00</lastmod>
   </url>
   
   <url>
@@ -23,37 +73,7 @@
   </url>
   
   <url>
-    <loc>https://kencc.github.io/</loc>
-    <lastmod>2019-09-23T15:03:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/post/</loc>
-    <lastmod>2019-09-23T15:03:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/tags/</loc>
-    <lastmod>2019-09-23T15:03:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/categories/%E7%B6%B2%E9%A0%81%E9%96%8B%E7%99%BC/</loc>
-    <lastmod>2019-09-23T15:03:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/tags/node.js/</loc>
-    <lastmod>2019-09-16T15:01:02+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/</loc>
-    <lastmod>2019-09-16T15:01:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://kencc.github.io/categories/%E9%96%8B%E7%99%BC%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2019-09-16T15:01:02+08:00</lastmod>
   </url>
   

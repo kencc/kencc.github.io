@@ -7,26 +7,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.58.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="KEN 陳建權">
-<meta name="keywords" content="Node.js, development, JavaScript, front-end, modern web">
-<meta name="description" content="NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。">
+<meta name="keywords" content="Node.js, npm, npx, development, JavaScript, front-end, modern web">
+<meta name="description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
 
 
-<meta property="og:description" content="NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。">
+<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用 NVM 管理 Node.js 版本">
-<meta name="twitter:title" content="使用 NVM 管理 Node.js 版本">
-<meta property="og:url" content="https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
-<meta property="twitter:url" content="https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
+<meta property="og:title" content="NPX - npm package executor">
+<meta name="twitter:title" content="NPX - npm package executor">
+<meta property="og:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+<meta property="twitter:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
 <meta property="og:site_name" content="KEN 陳建權">
-<meta property="og:description" content="NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。">
-<meta name="twitter:description" content="NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。">
+<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta name="twitter:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
 <meta property="og:locale" content="zh-tw">
 
   
-    <meta property="article:published_time" content="2019-09-16T15:01:02">
+    <meta property="article:published_time" content="2019-09-30T22:42:36">
   
   
-    <meta property="article:modified_time" content="2019-09-16T15:01:02">
+    <meta property="article:modified_time" content="2019-09-30T22:42:36">
   
   
   
@@ -37,6 +37,10 @@
   
     
       <meta property="article:tag" content="Node.js">
+    
+      <meta property="article:tag" content="npm">
+    
+      <meta property="article:tag" content="npx">
     
   
 
@@ -49,9 +53,6 @@
 
 
 
-  <meta property="og:image" content="https://i.imgur.com/vQgEPya.png">
-  <meta property="twitter:image" content="https://i.imgur.com/vQgEPya.png">
-
 
 
 
@@ -60,14 +61,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=640">
 
 
-    <title>使用 NVM 管理 Node.js 版本</title>
+    <title>NPX - npm package executor</title>
 
     <link rel="icon" href="https://kencc.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
+    <link rel="canonical" href="https://kencc.github.io/2019/09/npx-npm-package-executor/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -247,15 +248,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      使用 NVM 管理 Node.js 版本
+      NPX - npm package executor
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-16T15:01:02&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-09-30T22:42:36&#43;08:00">
         
-  九月 16, 2019
+  九月 30, 2019
 
       </time>
     
@@ -276,217 +277,37 @@
             <div class="main-content-wrap">
               
 
-<p><img src="https://i.imgur.com/vQgEPya.png" alt="" /></p>
+<p>npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。</p>
 
-<h2 id="node-version-manager">Node Version Manager</h2>
+<p>假如專案中有安裝 webpack 套件，在沒有 npx 工具前，使用命令列呼叫套件時，指令會長這樣。</p>
 
-<p>NVM 是一套知名的版本控制套件，可以很容易的在一台電腦上建置多個不同版本的 Node.js 環境，可說是所有前端開發人員都需要的套件工具。</p>
-
-<p>Node.js 的版本更新很快，在不同版本上進行開發與測試，是許多開發者經常要面對的挑戰，<del>這圈子的相容性實在是太差了</del>，而建置環境正是最耗時又殘害大腦的工作。 NVM 可以幫助我們輕鬆的安裝、移除、管理與切換 Node.js 環境，讓每一個版本都在不同的沙盒裡運作，彼此不會互相干擾。</p>
-
-<p>這篇文章主要是介紹 Mac 系統的 NVM 使用方式。</p>
-
-<h2 id="完整移除-node-js">完整移除 Node.js</h2>
-
-<p>如果曾經使用官網的安裝檔，將 Node.js 安裝在全域環境，需要使用終端機執行以下指令，將 Node.js 移除乾淨。</p>
-
-<pre><code class="language-bash=">lsbom -f -l -s -pf /var/db/receipts/org.nodejs.pkg.bom | while read f; do  sudo rm /usr/local/${f}; done
-sudo rm -rf /usr/local/lib/node /usr/local/lib/node_modules /var/db/receipts/org.nodejs.*
-
-cd /usr/local/lib
-sudo rm -rf node*
-
-cd /usr/local/include
-sudo rm -rf node*
-
-cd /usr/local/bin
-sudo rm -rf /usr/local/bin/npm
-sudo rm -rf /usr/local/bin/node
-
-sudo rm -rf /usr/local/share/man/man1/node.1
-sudo rm -rf /usr/local/lib/dtrace/node.d
-sudo rm -rf ~/.npm
+<pre><code>./node_modules/.bin/webpack -v
 </code></pre>
 
-<h2 id="開始安裝-nvm">開始安裝 NVM</h2>
+<p>使用 npx 呼叫套件的方式，變得更加直覺與方便。</p>
 
-<p>以下使用官網提供的方式進行 NVM 安裝</p>
+<pre><code>npx webpack -v
+</code></pre>
+
+<h2 id="基礎用法">基礎用法</h2>
+
+<p>npx 指令的運作方式</p>
 
 <ol>
-<li>透過 curl 安裝 NVM</li>
+<li>先從專案的 <code>node_modules/.bin</code> 目錄與環境變數 <code>$PATH</code> 裡面尋找是否有這個命令存在。</li>
+<li>如果都找不到的話，就會 <code>暫時安裝</code> 這個 binary 然後執行它，用完就刪除。</li>
 </ol>
 
-<p>只要將這段指令複製，貼到終端機中執行，即可進行安裝。</p>
-
-<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-</code></pre>
-
-<p>該指令會從 GitHub 下載 NVM 放到資料夾 <code>~/.nvm</code> 裡面。這就是 NVM 的安裝目錄，所有安裝的 Node.js 版本也都會放在這裏面管理，如果想要移除 NVM 只要將該目錄刪除即可，非常方便。</p>
-
-<ol>
-<li>設定環境變數</li>
-</ol>
-
-<p>需要更新環境變數，才可以在終端機使用 NVM 。</p>
-
-<ul>
-<li><p>MacOS 終端機預設使用的 shell 為 bash ， 環境變數的設定檔位置在 <code>Home</code> 目錄下面，名稱為 <code>.bash_profile</code> 。如果沒有這個檔案，可以使用指令 <code>touch .bash_profile</code> 自己新增檔案。</p></li>
-
-<li><p>用文字編輯器打開 <code>.bash_profile</code> 檔案，將下方的指令貼到最後面，存檔即可。</p></li>
-
-<li><p>更新後執行 <code>source ~/.bash_profile</code> 或是重開終端機，就可以使用 NVM 指令。</p></li>
-
-<li><p>如果你是熟悉終端機介面的用戶，有安裝 zsh ，請更新 <code>.zshrc</code> 檔案。</p>
-
-<pre><code class="language-bash=">export NVM_DIR=&quot;$([ -z &quot;${XDG_CONFIG_HOME-}&quot; ] &amp;&amp; printf %s &quot;${HOME}/.nvm&quot; || printf %s &quot;${XDG_CONFIG_HOME}/nvm&quot;)&quot;
-[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm
-</code></pre></li>
-</ul>
-
-<p>這對 Mac 系統不熟悉的人會比較困難，想要暸解什麼是 shell 的人可參考這篇文章。</p>
-
-<p><a href="https://printempw.github.io/the-difference-between-cli-terminal-shell-tty/">命令行界面 (CLI)、终端 (Terminal)、Shell、TTY，傻傻分不清楚？</a></p>
-
-<ol>
-<li><p>檢查是否順利安裝</p>
-
-<pre><code>command -v nvm
-
-# 顯示 nvm 代表安裝成功
-nvm
-</code></pre></li>
-</ol>
-
-<p>NVM 無法使用 <code>which nvm</code> 檢查，原因是 NVM 是使用 bash script 寫成的套件，並非一般編譯過的程式。</p>
-
-<h2 id="不建議使用-homebrew-安裝">不建議使用 Homebrew 安裝</h2>
-
-<ul>
-<li><p>NVM 的官網有明確指出，目前不支援 Homebrew 的安裝方式。</p></li>
-
-<li><p>使用 Homebrew 安裝 NVM 後，需要自行手動建立 <code>~/.nvm</code> 目錄與設定環境變數，才能順利使用。</p></li>
-
-<li><p>使用 Homebrew 移除 NVM 後，實際上 NVM 的資料夾與環境變數，依然存在電腦裡面，需要手動移除。</p></li>
-</ul>
-
-<p>根據以上幾點，個人認為使用 NVM 官方提供的安裝方式比較單純，因為只需要管理 <code>~/.nvm</code> 的目錄就好。</p>
-
-<h2 id="使用方式">使用方式</h2>
-
-<h3 id="常用指令">常用指令</h3>
-
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>說明</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>nvm ls-remote</td>
-<td>查詢可以安裝的版本</td>
-</tr>
-
-<tr>
-<td>nvm install <version></td>
-<td>安裝指定版本</td>
-</tr>
-
-<tr>
-<td>nvm install stable</td>
-<td>安裝最新版</td>
-</tr>
-
-<tr>
-<td>nvm uninstall <version></td>
-<td>移除指定版本</td>
-</tr>
-
-<tr>
-<td>nvm ls</td>
-<td>列出已安裝的版本</td>
-</tr>
-
-<tr>
-<td>nvm use <version></td>
-<td>切換版本</td>
-</tr>
-
-<tr>
-<td>nvm current</td>
-<td>查詢當前使用的版本</td>
-</tr>
-
-<tr>
-<td>nvm alias default <version></td>
-<td>設定預設使用的版本</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="使用-nvm-安裝-node-js">使用 NVM 安裝 Node.js</h3>
-
-<pre><code class="language-bash="># 查詢可以安裝的版本
-nvm ls-remote
-
-# 安裝 LTS 版本 v10.16.3
-nvm install v10.16.3
-
-# 安裝最新版的 Node.js
-nvm install stable
-
-# 查詢已安裝的版本
-nvm ls
-
-# 下面是查詢的結果
-       v10.16.3
--&gt;     v12.10.0
-default -&gt; stable (-&gt; v12.10.0)
-node -&gt; stable (-&gt; v12.10.0) (default)
-stable -&gt; 12.10 (-&gt; v12.10.0) (default)
-iojs -&gt; N/A (default)
-unstable -&gt; N/A (default)
-lts/* -&gt; lts/dubnium (-&gt; v10.16.3)
-lts/argon -&gt; v4.9.1 (-&gt; N/A)
-lts/boron -&gt; v6.17.1 (-&gt; N/A)
-lts/carbon -&gt; v8.16.1 (-&gt; N/A)
-lts/dubnium -&gt; v10.16.3
-
-# 切換版本至 v10.16.3
-nvm use v10.16.3
-
-# 查詢 Node.js 版本
-node -v
-
-# 查詢 npm 版本
-npm -v
-</code></pre>
-
-<h3 id="設定預設-node-js-版本">設定預設 Node.js 版本</h3>
-
-<p>NVM 預設使用的版本是已安裝 Node.js 的最新版</p>
-
-<p>使用 <code>nvm use</code> 指令切換的版本，只會在當下的終端機介面生效，要使用 <code>nvm alias default &lt;version&gt;</code> 設定才可以更換預設的版本。</p>
-
-<pre><code># 設定 V10.16.3 為預設版本
-nvm alias default v10.16.3
-</code></pre>
-
-<h2 id="移除-nvm">移除 NVM</h2>
-
-<p>透過終端機指令，將資料夾移除即可。</p>
-
-<pre><code>rm -rf ~/.nvm
-</code></pre>
+<p>因為 <code>暫時安裝</code> 的特性，對於那些只需要使用一次的套件，就是 npx 的最佳使用情境，用完即刪，完全無負擔。</p>
 
 <h2 id="參考資料">參考資料</h2>
 
 <ul>
-<li><a href="https://github.com/nvm-sh/nvm#installation-and-update">NVM on GitHub</a></li>
-<li><a href="https://www.dev.education/blog/2019/02/26/how-to-install-and-uninstall-nodejs-completely">How to install and uninstall Node.js completely</a></li>
-<li><a href="https://itnext.io/nvm-the-easiest-way-to-switch-node-js-environments-on-your-machine-in-a-flash-17babb7d5f1b">NVM, the Easiest Way to Switch Node.js Environments on Your Machine in a Flash</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/27840803">npx 是什么</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2019/02/npx.html">npx 使用教程</a></li>
+<li><a href="https://random.matob.web.id/programming/learn-node-js-what-is-npx-and-whats-the-difference-with-npm/">Learn Node.js : What is NPX? and What’s the Difference with NPM?</a></li>
+<li><a href="https://github.com/ajhsu/blog/issues/75">NPX Introduction</a></li>
+<li><a href="https://zyf.im/2019/07/17/npx-getting-started/#%E9%81%BF%E5%85%8D%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97">npx 入门使用</a></li>
 </ul>
 
               
@@ -502,6 +323,10 @@ nvm alias default v10.16.3
                     
   <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/node.js/">Node.js</a>
 
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npm/">npm</a>
+
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npx/">npx</a>
+
                   </div>
                 
               
@@ -513,7 +338,7 @@ nvm alias default v10.16.3
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/hugo-%E7%99%BC%E4%BD%88%E7%B6%B2%E7%AB%99%E5%88%B0-github-pages/" data-tooltip="Hugo - 發佈網站到 GitHub Pages">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -521,7 +346,7 @@ nvm alias default v10.16.3
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" data-tooltip="Homebrew - Mac 套件管理工具">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -539,13 +364,13 @@ nvm alias default v10.16.3
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -607,7 +432,7 @@ s.setAttribute('data-timestamp', +new Date());
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/hugo-%E7%99%BC%E4%BD%88%E7%B6%B2%E7%AB%99%E5%88%B0-github-pages/" data-tooltip="Hugo - 發佈網站到 GitHub Pages">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -615,7 +440,7 @@ s.setAttribute('data-timestamp', +new Date());
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/homebrew-mac-%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" data-tooltip="Homebrew - Mac 套件管理工具">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -633,13 +458,13 @@ s.setAttribute('data-timestamp', +new Date());
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -669,13 +494,13 @@ s.setAttribute('data-timestamp', +new Date());
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2F%25E4%25BD%25BF%25E7%2594%25A8-nvm-%25E7%25AE%25A1%25E7%2590%2586-node.js-%25E7%2589%2588%25E6%259C%25AC%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2F%25E4%25BD%25BF%25E7%2594%25A8-nvm-%25E7%25AE%25A1%25E7%2590%2586-node.js-%25E7%2589%2588%25E6%259C%25AC%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -770,9 +595,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/kencc.github.io\/2019\/09\/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC\/';
+          this.page.url = 'https:\/\/kencc.github.io\/2019\/09\/npx-npm-package-executor\/';
           
-            this.page.identifier = '\/2019\/09\/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC\/'
+            this.page.identifier = '\/2019\/09\/npx-npm-package-executor\/'
           
         };
         (function() {
