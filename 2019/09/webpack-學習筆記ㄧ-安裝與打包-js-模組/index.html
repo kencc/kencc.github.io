@@ -7,26 +7,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.58.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="KEN 陳建權">
-<meta name="keywords" content="Node.js, npm, npx, development, JavaScript, front-end, modern web">
-<meta name="description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta name="keywords" content="Node.js, Webpack, development, JavaScript, front-end, modern web">
+<meta name="description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
 
 
-<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta property="og:description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NPX - npm package executor">
-<meta name="twitter:title" content="NPX - npm package executor">
-<meta property="og:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
-<meta property="twitter:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+<meta property="og:title" content="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+<meta name="twitter:title" content="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+<meta property="og:url" content="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
+<meta property="twitter:url" content="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
 <meta property="og:site_name" content="KEN 陳建權">
-<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
-<meta name="twitter:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta property="og:description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
+<meta name="twitter:description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
 <meta property="og:locale" content="zh-tw">
 
   
-    <meta property="article:published_time" content="2019-09-30T22:42:36">
+    <meta property="article:published_time" content="2019-09-30T21:49:53">
   
   
-    <meta property="article:modified_time" content="2019-09-30T22:42:36">
+    <meta property="article:modified_time" content="2019-09-30T21:49:53">
   
   
   
@@ -38,9 +38,7 @@
     
       <meta property="article:tag" content="Node.js">
     
-      <meta property="article:tag" content="npm">
-    
-      <meta property="article:tag" content="npx">
+      <meta property="article:tag" content="Webpack">
     
   
 
@@ -61,14 +59,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=640">
 
 
-    <title>NPX - npm package executor</title>
+    <title>Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組</title>
 
     <link rel="icon" href="https://kencc.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+    <link rel="canonical" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -248,13 +246,13 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      NPX - npm package executor
+      Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-30T22:42:36&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-09-30T21:49:53&#43;08:00">
         
   九月 30, 2019
 
@@ -277,37 +275,173 @@
             <div class="main-content-wrap">
               
 
-<p>npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。</p>
+<p><img src="https://i.imgur.com/pGI2It5.png" alt="image alt" /><a href="https://webpack.github.io/">圖片來源</a></p>
 
-<p>假如專案中有安裝 webpack 套件，在沒有 npx 工具前，使用命令列呼叫套件時，指令會長這樣。</p>
+<p>Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。</p>
 
-<pre><code>./node_modules/.bin/webpack -v
+<h2 id="安裝-node-js">安裝 node.js</h2>
+
+<p>Webpack 是基於 node.js 來運行的，所以需要先安裝 node.js 環境，可以參考下面這篇文章。</p>
+
+<ul>
+<li><a href="https://kencc.github.io/2019/09/%E4%BD%BF%E7%94%A8-nvm-%E7%AE%A1%E7%90%86-node.js-%E7%89%88%E6%9C%AC/">使用 NVM 管理 Node.js 版本</a></li>
+</ul>
+
+<h2 id="建立專案環境">建立專案環境</h2>
+
+<p>使用命令列建立一個專案目錄，然後進入到目錄底下</p>
+
+<pre><code># 建立一個專案目錄
+mkdir demo
+
+# 切換到專案目錄底下
+cd demo
 </code></pre>
 
-<p>使用 npx 呼叫套件的方式，變得更加直覺與方便。</p>
+<p>使用 npm 初始化專案的資訊，產生 package.json 檔案來記錄這些資訊。</p>
+
+<pre><code>npm init -y
+</code></pre>
+
+<blockquote>
+<p><code>npm init</code> 會要求輸入一些專案資訊，加上參數 <code>-y</code> 可以忽略這些過程，使用預設的資訊填寫。</p>
+</blockquote>
+
+<p>使用 npm 安裝 webpack 與 webpack-cli 套件到專案中，</p>
+
+<pre><code>npm install webpack webpack-cli --save-dev
+</code></pre>
+
+<blockquote>
+<p>參數 <code>--save-dev</code> 會將套件的資訊記錄在 package.json 檔案中的 devDependencies 裡面，代表開發環境才會用到的套件。可以參考這篇章 <a href="https://chriskang028.wordpress.com/2017/07/05/%E5%BC%84%E6%87%82-npm-install-%E7%9A%84-dependencies-v-s-devdependencies/">弄懂 npm install 的 –save 與 –save-dev</a></p>
+</blockquote>
+
+<p>使用 npx 執行 webpack 的指令來檢查版本，出現版本號就代表安裝成功</p>
 
 <pre><code>npx webpack -v
 </code></pre>
 
-<h2 id="基礎用法">基礎用法</h2>
+<p>安裝後專案的目錄狀況
+<img src="https://i.imgur.com/eP4yb5T.png" alt="" /></p>
 
-<p>npx 指令的運作方式</p>
+<p>package.json 的內容
+<img src="https://i.imgur.com/fYv0F1l.png" alt="" /></p>
 
-<ol>
-<li>先從專案的 <code>node_modules/.bin</code> 目錄與環境變數 <code>$PATH</code> 裡面尋找是否有這個命令存在。</li>
-<li>如果都找不到的話，就會 <code>暫時安裝</code> 這個 binary 然後執行它，用完就刪除。</li>
-</ol>
+<h2 id="打包流程">打包流程</h2>
 
-<p>因為 <code>暫時安裝</code> 的特性，對於那些只需要使用一次的套件，就是 npx 的最佳使用情境，用完即刪，完全無負擔。</p>
+<p>使用 Webpack 打包前需要指定一個 JavaScript 的檔案作為進入點，它會從這檔案開始解析，然後依序引入其他資源進行打包，最後輸出完成的檔案到指定目錄。</p>
+
+<p>webpack.config.js 是 webpack 預設的設定檔，當要執行打包工作時，會先去讀取設定檔。如果沒有設定檔，預設會從 src 資料夾中找到 <code>index.js</code> 檔案去打包，然後輸出 <code>main.js</code> 檔案到 dist 資料夾下面。</p>
+
+<p>預設 webpack 只能打包 js 與 json 文件，如果要打包其他的資源，需要安裝其他的 loader 才能夠進行處理。</p>
+
+<h2 id="第一次打包">第一次打包</h2>
+
+<p>第一次我們嘗試使用<code>預設</code>的方式來打包一個簡單的 JavaScript 檔案，看看 Webpack 會如何進行。</p>
+
+<p>首先在專案目錄下面新增一個 <code>src</code> 資料夾，在裡面放置一個 <code>index.js</code> 檔案。</p>
+
+<pre><code># 新增 src 目錄，並切換到該目錄下面
+mkdir src &amp;&amp; cd src
+
+# 新增 index.js 檔案
+touch index.js
+</code></pre>
+
+<p><img src="https://i.imgur.com/5MEKfv1.png" alt="" /></p>
+
+<p>使用 VS Code 在 <code>index.js</code> 寫入一段簡單的程式碼</p>
+
+<pre><code class="language-javascript=">console.log('Hello Webpack!!')
+</code></pre>
+
+<p>在命令列輸入指令呼叫 Webpack 進行打包</p>
+
+<pre><code># 執行 webpack 進行打包
+npx webpack
+</code></pre>
+
+<p>打包後的檔案 <code>main.js</code> 會被放置在專案的 <code>dist</code> 目錄裡面，從 VS Code 裡面可以看到它</p>
+
+<p><img src="https://i.imgur.com/TGet7vq.png" alt="" /></p>
+
+<p>新增一個 <code>index.html</code> 來引用這個打包過的檔案，測試是否能在 Chrome 瀏覽器上正常工作，達到我們預期的功能。</p>
+
+<p><img src="https://i.imgur.com/odPVpOl.png" alt="" /></p>
+
+<p>從 Chrome 瀏覽器的 console 頁面，可以看到有正常顯示 Webpack Hello !!</p>
+
+<p><img src="https://i.imgur.com/HEZiFmf.png" alt="" /></p>
+
+<p>檢查 <code>main.js</code> 檔案的內容，你會發現多了很多的程式碼，這是因為 Webpack 在打包的過程中會幫你優化程式碼，同時增加 JavaScript 模組化開發需要的相關功能，這也是為何需要使用 Webpack 打包的主要原因。</p>
+
+<h2 id="客製你的打包流程">客製你的打包流程</h2>
+
+<p>在專案目錄下新增 <code>webpack.config.js</code> 檔案</p>
+
+<p><img src="https://i.imgur.com/ROzbz29.png" alt="" /></p>
+
+<p>複製下方的程式碼，我們維持進入點的設定方式，但修改輸出檔案的位置與檔名。</p>
+
+<pre><code class="language-javascript=">//  Node.js 內建用來處理路徑的模組
+const path = require('path');
+module.exports = {
+
+  // Webpack 的進入點
+  entry: './src/index.js',
+  
+  // Webpack 輸出點
+  output: {
+  
+    // 輸出的檔案名稱
+    filename: 'index.bundle.js',
+    
+    // 輸出的檔案位置
+
+    path: path.resolve(__dirname, './'),
+  }
+};
+</code></pre>
+
+<p>呼叫 Webpack 打包後，就會在專案的根目錄下產生 <code>index.bundle.js</code> 檔案，成功修改打包檔的名稱與位置。</p>
+
+<pre><code>npx webpack
+</code></pre>
+
+<p><img src="https://i.imgur.com/IQSBqvh.png" alt="" /></p>
+
+<h2 id="自動打包">自動打包</h2>
+
+<p>在開發時經常需要測試程式碼是否正常運作，如果每次都需要自己手動重新編譯才能測試的話，工作就會變得非常繁瑣。</p>
+
+<p>可以在指令的後面增加 <code>--watch</code> 參數，這樣在完成編譯後 Webpack 就不會立刻結束，會持續監聽檔案的變化，只要檔案有變動，就會自動打包。</p>
+
+<pre><code>npx webpack --watch
+</code></pre>
+
+<p>Webpack 的編譯方式有兩種，預設是使用生產版本的方式作編譯，因為要壓縮檔案與優化程式碼，所以比起開發版本的編譯方式，會佔用較多電腦資源，也更加耗時，所以在測試程式碼的時候，建議使用開發版本的方式編譯，會更加適合。</p>
+
+<ul>
+<li>production: 生產版本，需要將檔案壓縮與優化</li>
+<li>development: 開發版本，只編譯</li>
+</ul>
+
+<p>在指令後面再加上 <code>--mode development</code> 就會以開發版本的方式編譯。</p>
+
+<pre><code>npx webpack --watch --mode development
+</code></pre>
 
 <h2 id="參考資料">參考資料</h2>
 
 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/27840803">npx 是什么</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2019/02/npx.html">npx 使用教程</a></li>
-<li><a href="https://random.matob.web.id/programming/learn-node-js-what-is-npx-and-whats-the-difference-with-npm/">Learn Node.js : What is NPX? and What’s the Difference with NPM?</a></li>
-<li><a href="https://github.com/ajhsu/blog/issues/75">NPX Introduction</a></li>
-<li><a href="https://zyf.im/2019/07/17/npx-getting-started/#%E9%81%BF%E5%85%8D%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97">npx 入门使用</a></li>
+<li><a href="https://medium.com/i-am-mike/%E4%BB%80%E9%BA%BC%E6%98%AFwebpack-%E4%BD%A0%E9%9C%80%E8%A6%81webpack%E5%97%8E-2d8f9658241d">Webpack教學 (一) ：什麼是Webpack? 能吃嗎？</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10192578">Webpack 零設定，入門教學</a></li>
+<li><a href="https://medium.com/@toumasaya/webpack-%E5%85%A5%E9%96%80-6e53ae59222d">Webpack 入門</a></li>
+<li><a href="https://yakimhsu.com/project/project_w3_Javasciprt_npm.html">[第三週] JavaScript - npm 套件管理工具</a></li>
+<li><a href="https://medium.com/@cos214159/webpack-%E7%AD%86%E8%A8%98%E6%95%B4%E7%90%86-%E4%BA%8C-%E5%9F%BA%E6%9C%AC%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE-e4d30dbb8a58">Webpack 筆記整理 (二) - 基本環境建置
+</a></li>
+<li><a href="https://andy6804tw.github.io/2017/12/23/webpack-tutorial/">[Node.js打造API] Webpack 與 babel 轉譯</a></li>
+<li><a href="https://tomotoes.com/blog/webpack-flight-manual/">Webpack 飛行手冊</a></li>
 </ul>
 
               
@@ -323,9 +457,7 @@
                     
   <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/node.js/">Node.js</a>
 
-  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npm/">npm</a>
-
-  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npx/">npx</a>
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/webpack/">Webpack</a>
 
                   </div>
                 
@@ -338,7 +470,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/npx-npm-package-executor/" data-tooltip="NPX - npm package executor">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -346,7 +478,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/hugo-%E7%99%BC%E4%BD%88%E7%B6%B2%E7%AB%99%E5%88%B0-github-pages/" data-tooltip="Hugo - 發佈網站到 GitHub Pages">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -364,13 +496,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -432,7 +564,7 @@ s.setAttribute('data-timestamp', +new Date());
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/npx-npm-package-executor/" data-tooltip="NPX - npm package executor">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -440,7 +572,7 @@ s.setAttribute('data-timestamp', +new Date());
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/hugo-%E7%99%BC%E4%BD%88%E7%B6%B2%E7%AB%99%E5%88%B0-github-pages/" data-tooltip="Hugo - 發佈網站到 GitHub Pages">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -458,13 +590,13 @@ s.setAttribute('data-timestamp', +new Date());
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -494,13 +626,13 @@ s.setAttribute('data-timestamp', +new Date());
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fwebpack-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E3%2584%25A7-%25E5%25AE%2589%25E8%25A3%259D%25E8%2588%2587%25E6%2589%2593%25E5%258C%2585-js-%25E6%25A8%25A1%25E7%25B5%2584%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fwebpack-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E3%2584%25A7-%25E5%25AE%2589%25E8%25A3%259D%25E8%2588%2587%25E6%2589%2593%25E5%258C%2585-js-%25E6%25A8%25A1%25E7%25B5%2584%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -595,9 +727,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/kencc.github.io\/2019\/09\/npx-npm-package-executor\/';
+          this.page.url = 'https:\/\/kencc.github.io\/2019\/09\/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84\/';
           
-            this.page.identifier = '\/2019\/09\/npx-npm-package-executor\/'
+            this.page.identifier = '\/2019\/09\/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84\/'
           
         };
         (function() {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sass on KEN 陳建權</title>
+    <link>https://kencc.github.io/tags/sass/</link>
+    <description>Recent content in Sass on KEN 陳建權</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 07 Oct 2019 15:19:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://kencc.github.io/tags/sass/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Webpack 4 學習筆記(四) - 編譯 SCSS 文件</title>
+      <link>https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E5%9B%9B-%E7%B7%A8%E8%AD%AF-scss-%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Mon, 07 Oct 2019 15:19:55 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E5%9B%9B-%E7%B7%A8%E8%AD%AF-scss-%E6%96%87%E4%BB%B6/</guid>
+      <description>紀錄如何使用 Webpack 編譯 Sass</description>
+    </item>
+    
+  </channel>
+</rss>

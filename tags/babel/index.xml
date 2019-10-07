@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Babel on KEN 陳建權</title>
+    <link>https://kencc.github.io/tags/babel/</link>
+    <description>Recent content in Babel on KEN 陳建權</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <lastBuildDate>Mon, 07 Oct 2019 15:17:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://kencc.github.io/tags/babel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript</title>
+      <link>https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/</link>
+      <pubDate>Mon, 07 Oct 2019 15:17:42 +0800</pubDate>
+      
+      <guid>https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/</guid>
+      <description>Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。</description>
+    </item>
+    
+  </channel>
+</rss>

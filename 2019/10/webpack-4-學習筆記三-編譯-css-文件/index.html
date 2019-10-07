@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.58.1 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="KEN 陳建權">
+<meta name="keywords" content="Node.js, Webpack, CSS, development, JavaScript, front-end, modern web">
+<meta name="description" content="紀錄如何使用 Webpack 編譯 CSS 文件">
+
+
+<meta property="og:description" content="紀錄如何使用 Webpack 編譯 CSS 文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack 4 學習筆記(三) - 編譯 CSS 文件">
+<meta name="twitter:title" content="Webpack 4 學習筆記(三) - 編譯 CSS 文件">
+<meta property="og:url" content="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+<meta property="twitter:url" content="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+<meta property="og:site_name" content="KEN 陳建權">
+<meta property="og:description" content="紀錄如何使用 Webpack 編譯 CSS 文件">
+<meta name="twitter:description" content="紀錄如何使用 Webpack 編譯 CSS 文件">
+<meta property="og:locale" content="zh-tw">
+
+  
+    <meta property="article:published_time" content="2019-10-07T15:18:32">
+  
+  
+    <meta property="article:modified_time" content="2019-10-07T15:18:32">
+  
+  
+  
+    
+      <meta property="article:section" content="網頁開發">
+    
+  
+  
+    
+      <meta property="article:tag" content="Node.js">
+    
+      <meta property="article:tag" content="Webpack">
+    
+      <meta property="article:tag" content="CSS">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=640">
+
+
+    <title>Webpack 4 學習筆記(三) - 編譯 CSS 文件</title>
+
+    <link rel="icon" href="https://kencc.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://kencc.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://kencc.github.io/">KEN 陳建權</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://kencc.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=90" alt="作者的圖片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://kencc.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=110" alt="作者的圖片" />
+        </a>
+        <h4 class="sidebar-profile-name">KEN 陳建權</h4>
+        
+          <h5 class="sidebar-profile-bio">Software quality engineer, front-end developer, blogger and father of 2.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://kencc.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首頁</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://kencc.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分類</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://kencc.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">標籤</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://kencc.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">所有文章</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://kencc.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">關於</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kencc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com/@ken.3ds" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/kencclove" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://facebook.com/ken.3ds" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://kencc.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">Atom</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Webpack 4 學習筆記(三) - 編譯 CSS 文件
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-10-07T15:18:32&#43;08:00">
+        
+  十月 7, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>分類</span>
+    
+      <a class="category-link" href="https://kencc.github.io/categories/%e7%b6%b2%e9%a0%81%e9%96%8b%e7%99%bc">網頁開發</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>紀錄如何使用 Webpack 編譯 CSS 文件，內容包括</p>
+
+<ol>
+<li>將 CSS 注入 HTML 文件</li>
+<li>把 CSS 從 JavaScript 抽離，輸出獨立檔案</li>
+<li>壓縮 CSS 文件</li>
+<li>壓縮 JavaScript 文件</li>
+</ol>
+
+<h2 id="1-將-css-注入-html-文件">1. 將 CSS 注入 HTML 文件</h2>
+
+<h3 id="安裝-css-loader">安裝 CSS-loader</h3>
+
+<p>要使用 Webpack 編譯 CSS 需要使用以下兩個套件</p>
+
+<pre><code>npm install css-loader style-loader --save-dev
+</code></pre>
+
+<ul>
+<li>css-loader 幫助 Webpack 讀取 CSS 檔案</li>
+<li>style-loader 將編譯好的 CSS 樣式整合到 HTML 文件上，因此不需要再額外連結 CSS 的檔案，難怪 Webpack 會用注入的名詞。</li>
+</ul>
+
+<h3 id="修改-webpack-設定檔">修改 Webpack 設定檔</h3>
+
+<p>編輯 <code>webpack.config.js</code> 檔案，在 rules 裡面新增 CSS 的規則。</p>
+
+<pre><code class="language-javascript=">// Node.js 內建用來處理路徑的模組
+const path = require('path');
+module.exports = {
+
+  // Webpack 的進入點
+  entry: './src/index.js',
+  
+  // Webpack 輸出點
+  output: {
+
+    // 輸出的檔案名稱
+    filename: 'main.js',
+    
+    // 輸出的檔案位置
+    path: path.resolve(__dirname, './dist/'),
+  },
+  module: {
+    rules: [
+
+      // Babel
+      {
+        test: /\.(js)$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      
+      // CSS 
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+};
+</code></pre>
+
+<h3 id="loader-的引用順序">Loader 的引用順序</h3>
+
+<pre><code class="language-javascript=">  module: {
+    rules: [ 
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+</code></pre>
+
+<blockquote>
+<p>注意：
+Webpack 的 Loader 引用順序是從右到左，很重要，順序錯誤就無法執行
+先使用 css-loader 讀取檔案後
+再使用 style-loader 將檔案注入 HTML 頁面中</p>
+</blockquote>
+
+<h3 id="注入-css-到-html-文件">注入 CSS 到 HTML 文件</h3>
+
+<p>在 <code>src</code> 資料夾中，新增兩個 CSS 檔案</p>
+
+<ul>
+<li>style.css</li>
+<li>reset.css</li>
+</ul>
+
+<p>style.css 的樣式內容，簡單為 H1 標籤加上紅色</p>
+
+<pre><code class="language-css=">h1{
+  color: red;
+}
+</code></pre>
+
+<p>reset.css 的內容，使用 Eric Meyer 的 CSS reset</p>
+
+<blockquote>
+<p><a href="https://meyerweb.com/eric/tools/css/reset/">CSS Reset</a></p>
+</blockquote>
+
+<p>在 index.js 檔案的最上面 import 這兩個 CSS 檔案</p>
+
+<pre><code class="language-javascript=">import '../src/reset.css'
+import '../src/style.css'
+
+const Name = ['Mike', 'Jacky', 'Andy', 'Scars']
+Name.forEach((obj, idx)=&gt; console.log(`${idx} =&gt; ${obj}`))
+</code></pre>
+
+<p>所以在 <code>src</code> 目錄中會有以下這些檔案</p>
+
+<p><img src="https://i.imgur.com/eesk9BW.png" alt="" /></p>
+
+<p>在 index.html 中，加入 H1 標籤並填寫內容</p>
+
+<pre><code class="language-htmlmixed=">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;script src=&quot;./dist/main.js&quot;&gt;&lt;/script&gt;  
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>呼叫 Webpack 進行編譯</p>
+
+<pre><code>npx webpack --mode development
+</code></pre>
+
+<p>使用瀏覽器檢查 Element 資訊，兩個 CSS 檔案都被注入 HTML 文件的 style 標籤裡面。</p>
+
+<p><img src="https://i.imgur.com/Ta8B0Yg.png" alt="" /></p>
+
+<h2 id="2-抽離-css-輸出獨立檔案">2. 抽離 CSS 輸出獨立檔案</h2>
+
+<p>從 Webpack 4 開始，官方推荐使用 <code>mini-css-extract-plugin</code> 來打包 CSS 文件，原因是<code>extract-text-webpack-plugin</code> 插件已經被棄用了。</p>
+
+<p>如果將 CSS 抽離變成獨立的檔案，就不可以使用 style-loader 注入 CSS 到 HTML 文件中，需要自己 link 文件。</p>
+
+<h3 id="安裝-mini-css-extract-plugin-插件">安裝 mini-css-extract-plugin 插件</h3>
+
+<pre><code>npm install mini-css-extract-plugin --save-dev
+</code></pre>
+
+<h3 id="修改-webpack-設定檔-1">修改 Webpack 設定檔</h3>
+
+<ol>
+<li>引入 mini-css-extract-plugin 插件</li>
+<li>加入 plugins 屬性，設定 mini-css-extract-plugin 的輸出方式</li>
+
+<li><p>修改 rules 裡面 CSS 的 loader 設定，將 style-loader 改成 MiniCssExtractPlugin.loader</p>
+
+<pre><code class="language-javascript=">// Node.js 內建用來處理路徑的模組
+const path = require('path');
+
+// 1. 引入 MiniCssExtractPlugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+
+// Webpack 的進入點
+entry: './src/index.js',
+  
+// Webpack 輸出點
+output: {
+
+// 輸出的檔案名稱
+filename: 'main.js',
+    
+// 輸出的檔案位置
+path: path.resolve(__dirname, './dist/'),
+},
+  
+// 2. 加入 plugins 屬性，設定 mini-css-extract-plugin 的輸出方式
+plugins: [
+new MiniCssExtractPlugin({
+  filename: './css/[name].bundle.css',
+}),
+],
+module: {
+rules: [
+
+  // Babel
+  {
+    test: /\.(js)$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  },
+      
+  // CSS
+  // 3. 修改 rules 裡面 CSS 的 loader 設定，將 style-loader 改成 MiniCssExtractPlugin.loader
+  {
+    test: /\.css$/,
+    //use: ['style-loader', 'css-loader'], 註解掉不使用原本的設定
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  },
+],
+},
+};
+</code></pre></li>
+</ol>
+
+<h3 id="開始編譯輸出-css-檔">開始編譯輸出 CSS 檔</h3>
+
+<p>呼叫 Webpack 進行編譯，指令與先前相同</p>
+
+<pre><code>npx webpack --mode development
+</code></pre>
+
+<p>準備開始編譯，目前的檔案結構是，一個 index.js 裡面引入兩個 CSS 檔案。編譯之後會將兩個 CSS 整合成一個檔案，輸出到 <code>./dist/css/</code> 目錄下，檔名是 <code>main.bundle.css</code> ，檢查檔案內容的確包含 <code>style.css</code> 與 <code>reset.css</code> 的樣式。</p>
+
+<p><img src="https://i.imgur.com/HcCAGKw.png" alt="" /></p>
+
+<p>在 index.html 文件 link 編譯出來的 CSS ， 可以順利在瀏覽器中使用</p>
+
+<h2 id="3-壓縮-css-文件">3. 壓縮 CSS 文件</h2>
+
+<p>Webpack 預設的 production mode 只能壓縮 JavaScript 文件，所以需要安裝外掛來壓縮 CSS 文件。</p>
+
+<h3 id="安裝-optimize-css-assets-webpack-plugin-插件">安裝 optimize-css-assets-webpack-plugin 插件</h3>
+
+<pre><code>npm install optimize-css-assets-webpack-plugin --save-dev
+</code></pre>
+
+<h3 id="修改-webpack-設定檔-2">修改 Webpack 設定檔</h3>
+
+<ol>
+<li>引入 OptimizeCSSAssetsPlugin 外掛</li>
+
+<li><p>加入 optimization 屬性，設定 minimizer 為 OptimizeCSSAssetsPlugin</p>
+
+<pre><code class="language-javascript=">// Node.js 內建用來處理路徑的模組
+const path = require('path');
+
+// 1. 引入 MiniCssExtractPlugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// 1. 
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+
+module.exports = {
+
+// Webpack 的進入點
+entry: './src/index.js',
+  
+// Webpack 輸出點
+output: {
+
+// 輸出的檔案名稱
+filename: 'main.js',
+    
+// 輸出的檔案位置
+path: path.resolve(__dirname, './dist/'),
+},
+
+// 2. 
+optimization: {
+minimizer: [new OptimizeCSSAssetsPlugin()],
+},
+  
+// 2. 加入 plugins 屬性，設定 mini-css-extract-plugin 的輸出方式
+// filename 使用[name]變數，它會自動抓取你在 entry 裡的屬性名稱來命名檔案
+plugins: [
+new MiniCssExtractPlugin({
+  filename: './css/[name].bundle.css',
+}),
+],
+module: {
+rules: [
+
+  // Babel
+  {
+    test: /\.(js)$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  },
+      
+  // CSS
+  // 3. 修改 rules 裡面 CSS 的 loader 設定，將 style-loader 改成 MiniCssExtractPlugin.loader
+  {
+    test: /\.css$/,
+    //use: ['style-loader', 'css-loader'], 註解掉不使用原本的設定
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  },
+],
+},
+};
+</code></pre></li>
+</ol>
+
+<h3 id="執行編譯">執行編譯</h3>
+
+<p>呼叫 Webpack 進行編譯，由於要壓縮 CSS 檔案，因此指令要使用 production 模式</p>
+
+<pre><code>npx webpack
+</code></pre>
+
+<p>檢查編譯後的結果</p>
+
+<p>CSS 成功被壓縮了，但是原本的 Webpack 預設的 JavaScript 壓縮卻失效，為什麼?</p>
+
+<p>因為 optimization.minimizer 會將預設值覆蓋掉，變成沒有 JavaScript 的壓縮設定，很瞎吧！</p>
+
+<p>所以我們還要加上另一個套件。</p>
+
+<h2 id="4-壓縮-javascript-文件">4. 壓縮 JavaScript 文件</h2>
+
+<h3 id="安裝-terser-webpack-plugin-插件">安裝 terser-webpack-plugin 插件</h3>
+
+<pre><code>npm install terser-webpack-plugin --save-dev
+</code></pre>
+
+<h3 id="調整-webpack-設定">調整 Webpack 設定</h3>
+
+<ol>
+<li>引入 terser-webpack-plugin 模組</li>
+
+<li><p>設定 optimization.minimizer</p>
+
+<pre><code class="language-javascript=">// Node.js 內建用來處理路徑的模組
+const path = require('path');
+
+// 抽離 CSS 檔案的套件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// 壓縮 CSS 的套件
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+// 壓縮 JS 的套件
+const TerserJSPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+
+// Webpack 的進入點
+entry: './src/index.js',
+  
+// Webpack 輸出點
+output: {
+
+// 輸出的檔案名稱
+filename: 'main.js',
+    
+// 輸出的檔案位置
+path: path.resolve(__dirname, './dist/'),
+},
+
+// 在生產模式會壓縮 CSS 與 JS 檔案
+optimization: {
+minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+},
+  
+// 設定 CSS 的輸出方式
+// 使用[name]變數，代表使用 entry 文件的檔名來命名檔案
+plugins: [
+new MiniCssExtractPlugin({
+  filename: './css/[name].bundle.css',
+}),
+],
+module: {
+rules: [
+
+  // Babel
+  {
+    test: /\.(js)$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  },
+      
+  // CSS
+  // style-loader 會將 CSS 注入 HTML 
+  // MiniCssExtractPlugin.loader 會將 CSS 抽離成獨立檔案
+  {
+    test: /\.css$/,
+    //use: ['style-loader', 'css-loader'],
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  },
+],
+},
+};
+</code></pre></li>
+</ol>
+
+<h3 id="進行編譯">進行編譯</h3>
+
+<p>呼叫 Webpack 進行編譯，指令使用 production 模式</p>
+
+<pre><code>npx webpack
+</code></pre>
+
+<p>檢查編譯後的結果</p>
+
+<p>JavaScript 與 CSS 的檔案都順利被壓縮了！！</p>
+
+<h2 id="參考資料">參考資料</h2>
+
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10193788">webpack.config.js - 設定 module 來編譯不同類型的檔案</a></li>
+<li><a href="https://hi-susan.github.io/lessons/2019/08/26/Webpack4-03.html">Webpack4 - Javascript import CSS file &amp; CSSminify</a></li>
+<li><a href="https://medium.com/@cos214159/webpack-%E7%AD%86%E8%A8%98%E6%95%B4%E7%90%86-%E5%85%AB-mini-css-extract-plugin-57b1f11a60da">Webpack 筆記整理 (八) - mini-css-extract-plugin</a></li>
+<li>[插件2] mini-css-extract-plugin](<a href="https://www.jianshu.com/p/91e60af11cc9">https://www.jianshu.com/p/91e60af11cc9</a>)</li>
+<li><a href="https://juejin.im/post/5c4bfd89e51d45215c2e5a76#heading-8">一个合格的Webpack4配置工程师素养：第一部分</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">標籤</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/node.js/">Node.js</a>
+
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/webpack/">Webpack</a>
+
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/css/">CSS</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E5%9B%9B-%E7%B7%A8%E8%AD%AF-scss-%E6%96%87%E4%BB%B6/" data-tooltip="Webpack 4 學習筆記(四) - 編譯 SCSS 文件">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://kencc.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 KEN 陳建權. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E5%9B%9B-%E7%B7%A8%E8%AD%AF-scss-%E6%96%87%E4%BB%B6/" data-tooltip="Webpack 4 學習筆記(四) - 編譯 SCSS 文件">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F10%2Fwebpack-4-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E4%25B8%2589-%25E7%25B7%25A8%25E8%25AD%25AF-css-%25E6%2596%2587%25E4%25BB%25B6%2F">
+          <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F10%2Fwebpack-4-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E4%25B8%2589-%25E7%25B7%25A8%25E8%25AD%25AF-css-%25E6%2596%2587%25E4%25BB%25B6%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=110" alt="作者的圖片" />
+    
+    <h4 id="about-card-name">KEN 陳建權</h4>
+    
+      <div id="about-card-bio">Software quality engineer, front-end developer, blogger and father of 2.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Front-End Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Taiwan
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://kencc.github.io/images/cover2.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+<script id="dsq-count-scr" src="//kencc.disqus.com/count.js" async></script>
+
+
+
+<script src="https://kencc.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/kencc.github.io\/2019\/10\/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6\/';
+          
+            this.page.identifier = '\/2019\/10\/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'kencc';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

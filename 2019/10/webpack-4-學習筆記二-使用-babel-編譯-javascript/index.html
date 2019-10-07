@@ -7,26 +7,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.58.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="KEN 陳建權">
-<meta name="keywords" content="Node.js, npm, npx, development, JavaScript, front-end, modern web">
-<meta name="description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta name="keywords" content="Node.js, Webpack, Babel, development, JavaScript, front-end, modern web">
+<meta name="description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
 
 
-<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta property="og:description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NPX - npm package executor">
-<meta name="twitter:title" content="NPX - npm package executor">
-<meta property="og:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
-<meta property="twitter:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+<meta property="og:title" content="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+<meta name="twitter:title" content="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+<meta property="og:url" content="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
+<meta property="twitter:url" content="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
 <meta property="og:site_name" content="KEN 陳建權">
-<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
-<meta name="twitter:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta property="og:description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
+<meta name="twitter:description" content="Webpack 是一個模組打包工具(module bundler)，可以將多個 JavaScript 檔案，整合成一個檔案，讓模組化開發變得更加容易。">
 <meta property="og:locale" content="zh-tw">
 
   
-    <meta property="article:published_time" content="2019-09-30T22:42:36">
+    <meta property="article:published_time" content="2019-10-07T15:17:42">
   
   
-    <meta property="article:modified_time" content="2019-09-30T22:42:36">
+    <meta property="article:modified_time" content="2019-10-07T15:17:42">
   
   
   
@@ -38,9 +38,9 @@
     
       <meta property="article:tag" content="Node.js">
     
-      <meta property="article:tag" content="npm">
+      <meta property="article:tag" content="Webpack">
     
-      <meta property="article:tag" content="npx">
+      <meta property="article:tag" content="Babel">
     
   
 
@@ -61,14 +61,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=640">
 
 
-    <title>NPX - npm package executor</title>
+    <title>Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript</title>
 
     <link rel="icon" href="https://kencc.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+    <link rel="canonical" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -248,15 +248,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      NPX - npm package executor
+      Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-30T22:42:36&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-07T15:17:42&#43;08:00">
         
-  九月 30, 2019
+  十月 7, 2019
 
       </time>
     
@@ -277,37 +277,113 @@
             <div class="main-content-wrap">
               
 
-<p>npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。</p>
+<p>從 2015 年 JavaScript ES6 發佈，開始走向標準化之後，每年都會有新的語法與特性加入，但是瀏覽器的支援卻跟不上語法的改進速度，使用 Babel 可以將這些新的語法轉譯成支援度最高的 ES5 版本的 JavaScript，讓我們可以方便使用新語法帶來的好處，而不用煩惱支援性的問題。</p>
 
-<p>假如專案中有安裝 webpack 套件，在沒有 npx 工具前，使用命令列呼叫套件時，指令會長這樣。</p>
+<h2 id="安裝-babel-loader">安裝 Babel-loader</h2>
 
-<pre><code>./node_modules/.bin/webpack -v
+<p>webpack 要使用 Babel 需要安裝以下三個套件</p>
+
+<ul>
+<li>babel-loader 讀取資源轉化給 Webpack 使用</li>
+<li>@babel/core 這是 Babel 的核心，轉譯程式碼</li>
+
+<li><p>@babel/preset-env 依據 EMCA 規範，定義出來的轉譯規則。</p>
+
+<pre><code>npm install babel-loader @babel/core @babel/preset-env --save-dev
+</code></pre></li>
+</ul>
+
+<p>裝完套件後 <code>package.json</code> 檔案會紀錄這三個套件資訊</p>
+
+<pre><code class="language-json=">{
+  &quot;name&quot;: &quot;demo&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.6.2&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.6.2&quot;,
+    &quot;babel-loader&quot;: &quot;^8.0.6&quot;,
+    &quot;webpack&quot;: &quot;^4.41.0&quot;,
+    &quot;webpack-cli&quot;: &quot;^3.3.9&quot;
+  }
+}
 </code></pre>
 
-<p>使用 npx 呼叫套件的方式，變得更加直覺與方便。</p>
+<h2 id="設定-babel">設定 Babel</h2>
 
-<pre><code>npx webpack -v
+<p>編輯 <code>webpack.config.js</code> 檔案，新增 module 的屬性，然後將 Babel 的 loader 與 options 填寫進去。</p>
+
+<pre><code class="language-javascript=">// Node.js 內建用來處理路徑的模組
+const path = require('path');
+module.exports = {
+
+  // Webpack 進入點
+  entry: './src/index.js',
+  
+  // Webpack 輸出點
+  output: {
+
+    // 輸出的檔案名稱
+    filename: 'main.js',
+    
+    // 輸出的檔案位置
+    path: path.resolve(__dirname, './dist/'),
+  },
+  
+  // 新增 Babel 的 Module
+  module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
+  },
+};
 </code></pre>
 
-<h2 id="基礎用法">基礎用法</h2>
+<h2 id="撰寫-es6-程式">撰寫 ES6 程式</h2>
 
-<p>npx 指令的運作方式</p>
+<p>在 index.js 中撰寫 ES6 的程式碼</p>
 
-<ol>
-<li>先從專案的 <code>node_modules/.bin</code> 目錄與環境變數 <code>$PATH</code> 裡面尋找是否有這個命令存在。</li>
-<li>如果都找不到的話，就會 <code>暫時安裝</code> 這個 binary 然後執行它，用完就刪除。</li>
-</ol>
+<p><a href="https://medium.com/i-am-mike/webpack%E6%95%99%E5%AD%B8-%E5%9B%9B-javascript-%E8%88%87-babel-1d7acd911e63">範例程式碼來源：Webpack教學 (四)：JavaScript 與 Babel</a></p>
 
-<p>因為 <code>暫時安裝</code> 的特性，對於那些只需要使用一次的套件，就是 npx 的最佳使用情境，用完即刪，完全無負擔。</p>
+<pre><code class="language-javascript=">const Name = ['Mike', 'Jacky', 'Andy', 'Scars']
+Name.forEach((obj, idx)=&gt; console.log(`${idx} =&gt; ${obj}`))
+</code></pre>
+
+<p>使用 Webpack 編譯文件</p>
+
+<pre><code>npx webpack --mode development
+</code></pre>
+
+<p>檢查編譯後的程式碼，的確變成 ES5 的格式</p>
+
+<p><img src="https://i.imgur.com/Viv7hfc.png" alt="" /></p>
+
+<p>使用瀏覽器檢查 Console 資訊，有順利輸出資訊</p>
+
+<p><img src="https://i.imgur.com/7adguGl.png" alt="" /></p>
 
 <h2 id="參考資料">參考資料</h2>
 
 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/27840803">npx 是什么</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2019/02/npx.html">npx 使用教程</a></li>
-<li><a href="https://random.matob.web.id/programming/learn-node-js-what-is-npx-and-whats-the-difference-with-npm/">Learn Node.js : What is NPX? and What’s the Difference with NPM?</a></li>
-<li><a href="https://github.com/ajhsu/blog/issues/75">NPX Introduction</a></li>
-<li><a href="https://zyf.im/2019/07/17/npx-getting-started/#%E9%81%BF%E5%85%8D%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97">npx 入门使用</a></li>
+<li><a href="https://medium.com/i-am-mike/webpack%E6%95%99%E5%AD%B8-%E5%9B%9B-javascript-%E8%88%87-babel-1d7acd911e63">Webpack教學 (四)：JavaScript 與 Babel</a></li>
+<li><a href="https://hi-susan.github.io/lessons/2019/08/24/Webpack4-02.html">Webpack4 - JavaScript &amp; Babel</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10194314">Babel - 走向 JavaScript 的嶄新未來</a></li>
 </ul>
 
               
@@ -323,9 +399,9 @@
                     
   <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/node.js/">Node.js</a>
 
-  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npm/">npm</a>
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/webpack/">Webpack</a>
 
-  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npx/">npx</a>
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/babel/">Babel</a>
 
                   </div>
                 
@@ -338,7 +414,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/" data-tooltip="Webpack 4 學習筆記(三) - 編譯 CSS 文件">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -346,7 +422,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/npx-npm-package-executor/" data-tooltip="NPX - npm package executor">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -364,13 +440,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -432,7 +508,7 @@ s.setAttribute('data-timestamp', +new Date());
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%B8%89-%E7%B7%A8%E8%AD%AF-css-%E6%96%87%E4%BB%B6/" data-tooltip="Webpack 4 學習筆記(三) - 編譯 CSS 文件">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -440,7 +516,7 @@ s.setAttribute('data-timestamp', +new Date());
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/npx-npm-package-executor/" data-tooltip="NPX - npm package executor">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -458,13 +534,13 @@ s.setAttribute('data-timestamp', +new Date());
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -494,13 +570,13 @@ s.setAttribute('data-timestamp', +new Date());
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F10%2Fwebpack-4-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E4%25BA%258C-%25E4%25BD%25BF%25E7%2594%25A8-babel-%25E7%25B7%25A8%25E8%25AD%25AF-javascript%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F10%2Fwebpack-4-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E4%25BA%258C-%25E4%25BD%25BF%25E7%2594%25A8-babel-%25E7%25B7%25A8%25E8%25AD%25AF-javascript%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -595,9 +671,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/kencc.github.io\/2019\/09\/npx-npm-package-executor\/';
+          this.page.url = 'https:\/\/kencc.github.io\/2019\/10\/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript\/';
           
-            this.page.identifier = '\/2019\/09\/npx-npm-package-executor\/'
+            this.page.identifier = '\/2019\/10\/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript\/'
           
         };
         (function() {

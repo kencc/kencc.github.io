@@ -7,26 +7,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Hugo 0.58.1 with theme Tranquilpeak 0.4.7-BETA">
 <meta name="author" content="KEN 陳建權">
-<meta name="keywords" content="Node.js, npm, npx, development, JavaScript, front-end, modern web">
-<meta name="description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta name="keywords" content="Node.js, Webpack, PostCSS, development, JavaScript, front-end, modern web">
+<meta name="description" content="紀錄如何使用 postcss-loader">
 
 
-<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta property="og:description" content="紀錄如何使用 postcss-loader">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NPX - npm package executor">
-<meta name="twitter:title" content="NPX - npm package executor">
-<meta property="og:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
-<meta property="twitter:url" content="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+<meta property="og:title" content="Webpack 4 學習筆記(五) - 使用 PostCSS 處理 CSS">
+<meta name="twitter:title" content="Webpack 4 學習筆記(五) - 使用 PostCSS 處理 CSS">
+<meta property="og:url" content="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
+<meta property="twitter:url" content="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
 <meta property="og:site_name" content="KEN 陳建權">
-<meta property="og:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
-<meta name="twitter:description" content="npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。">
+<meta property="og:description" content="紀錄如何使用 postcss-loader">
+<meta name="twitter:description" content="紀錄如何使用 postcss-loader">
 <meta property="og:locale" content="zh-tw">
 
   
-    <meta property="article:published_time" content="2019-09-30T22:42:36">
+    <meta property="article:published_time" content="2019-10-07T15:20:59">
   
   
-    <meta property="article:modified_time" content="2019-09-30T22:42:36">
+    <meta property="article:modified_time" content="2019-10-07T15:20:59">
   
   
   
@@ -38,9 +38,9 @@
     
       <meta property="article:tag" content="Node.js">
     
-      <meta property="article:tag" content="npm">
+      <meta property="article:tag" content="Webpack">
     
-      <meta property="article:tag" content="npx">
+      <meta property="article:tag" content="PostCSS">
     
   
 
@@ -61,14 +61,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f36d8f70fbeacb0435e59c96eeb2bf0f?s=640">
 
 
-    <title>NPX - npm package executor</title>
+    <title>Webpack 4 學習筆記(五) - 使用 PostCSS 處理 CSS</title>
 
     <link rel="icon" href="https://kencc.github.io/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://kencc.github.io/2019/09/npx-npm-package-executor/">
+    <link rel="canonical" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -248,15 +248,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      NPX - npm package executor
+      Webpack 4 學習筆記(五) - 使用 PostCSS 處理 CSS
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-09-30T22:42:36&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-10-07T15:20:59&#43;08:00">
         
-  九月 30, 2019
+  十月 7, 2019
 
       </time>
     
@@ -277,37 +277,121 @@
             <div class="main-content-wrap">
               
 
-<p>npm 在 v5.2.0 的版本開始加入 npx 的工具來簡化呼叫套件的指令。</p>
+<p>PostCSS 是 CSS 的後處理器，它使用 JavaScript 來對 CSS 做後製處理，達成擴展 CSS 的功能。</p>
 
-<p>假如專案中有安裝 webpack 套件，在沒有 npx 工具前，使用命令列呼叫套件時，指令會長這樣。</p>
+<p>要使用 PostCSS 的 Autoprefixer 外掛，幫 CSS 加上瀏覽器引擎前綴，提高對瀏覽器的相容性支援</p>
 
-<pre><code>./node_modules/.bin/webpack -v
-</code></pre>
+<h2 id="安裝">安裝</h2>
 
-<p>使用 npx 呼叫套件的方式，變得更加直覺與方便。</p>
+<ul>
+<li>postcss-loader</li>
 
-<pre><code>npx webpack -v
-</code></pre>
+<li><p>autoprefixer PostCSS 的外掛，幫 CSS 自動補全瀏覽器引擎前綴</p>
 
-<h2 id="基礎用法">基礎用法</h2>
+<pre><code>npm install postcss-loader autoprefixer --save-dev
+</code></pre></li>
+</ul>
 
-<p>npx 指令的運作方式</p>
+<h2 id="修改-webpack-配置檔">修改 Webpack 配置檔</h2>
+
+<p>檢查一下 Webpack 的處理流程</p>
 
 <ol>
-<li>先從專案的 <code>node_modules/.bin</code> 目錄與環境變數 <code>$PATH</code> 裡面尋找是否有這個命令存在。</li>
-<li>如果都找不到的話，就會 <code>暫時安裝</code> 這個 binary 然後執行它，用完就刪除。</li>
+<li>sass-loader 編譯完變成 css 文件</li>
+<li>postcss-loader 幫 css 文件加上前綴</li>
+<li>css-loader 讀取 css 文件</li>
+<li>MiniCssExtractPlugin.loader 抽離 css 文件</li>
 </ol>
 
-<p>因為 <code>暫時安裝</code> 的特性，對於那些只需要使用一次的套件，就是 npx 的最佳使用情境，用完即刪，完全無負擔。</p>
+<p>因此要將 postcss-loader 放置在 sass-loader 的後面</p>
+
+<pre><code class="language-javascript=">// Node.js 內建用來處理路徑的模組
+const path = require('path');
+
+// 抽離 CSS 檔案的套件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// 壓縮 CSS 的套件
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+// 壓縮 JS 的套件
+const TerserJSPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+
+  // Webpack 的進入點
+  entry: './src/index.js',
+  
+  // Webpack 輸出點
+  output: {
+
+    // 輸出的檔案名稱
+    filename: 'main.js',
+    
+    // 輸出的檔案位置
+    path: path.resolve(__dirname, './dist/'),
+  },
+
+  // 在生產模式會壓縮 CSS 與 JS 檔案
+  optimization: {
+    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+  },
+  
+  // 設定 CSS 的輸出方式
+  // 使用[name]變數，代表使用 entry 文件的檔名來命名檔案
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: './css/[name].bundle.css',
+    }),
+  ],
+  module: {
+    rules: [
+
+      // Babel
+      {
+        test: /\.(js)$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      
+      // CSS
+      // style-loader 會將 CSS 注入 HTML 
+      // MiniCssExtractPlugin.loader 會將 CSS 抽離成獨立檔案
+      {
+        test: /\.(sa|sc|c)ss$/,
+        //use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: &quot;postcss-loader&quot;,
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer')({
+                  'browsers': ['&gt; 1%', 'last 2 versions']
+                }),
+              ]
+            }
+          },
+          'sass-loader'],
+      },
+    ],
+  },
+};
+</code></pre>
 
 <h2 id="參考資料">參考資料</h2>
 
 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/27840803">npx 是什么</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2019/02/npx.html">npx 使用教程</a></li>
-<li><a href="https://random.matob.web.id/programming/learn-node-js-what-is-npx-and-whats-the-difference-with-npm/">Learn Node.js : What is NPX? and What’s the Difference with NPM?</a></li>
-<li><a href="https://github.com/ajhsu/blog/issues/75">NPX Introduction</a></li>
-<li><a href="https://zyf.im/2019/07/17/npx-getting-started/#%E9%81%BF%E5%85%8D%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97">npx 入门使用</a></li>
+<li><a href="https://cythilya.github.io/2018/08/10/postcss/">PostCSS</a></li>
+<li><a href="https://webpack.wuhaolin.cn/3%E5%AE%9E%E6%88%98/3-5%E4%BD%BF%E7%94%A8PostCSS.html">深入淺出 Webpack</a></li>
+<li><a href="https://juejin.im/post/5ce8f72c6fb9a07eba2c18f8">demo13 webpack通过postcss-loader加工css和scss</a></li>
+<li><a href="https://www.itread01.com/p/654053.html">使用 PostCSS 進行 CSS 處理</a></li>
 </ul>
 
               
@@ -323,9 +407,9 @@
                     
   <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/node.js/">Node.js</a>
 
-  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npm/">npm</a>
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/webpack/">Webpack</a>
 
-  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/npx/">npx</a>
+  <a class="tag tag--primary tag--small" href="https://kencc.github.io/tags/postcss/">PostCSS</a>
 
                   </div>
                 
@@ -338,7 +422,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -346,7 +430,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E5%9B%9B-%E7%B7%A8%E8%AD%AF-scss-%E6%96%87%E4%BB%B6/" data-tooltip="Webpack 4 學習筆記(四) - 編譯 SCSS 文件">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -364,13 +448,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -432,7 +516,7 @@ s.setAttribute('data-timestamp', +new Date());
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%8C-%E4%BD%BF%E7%94%A8-babel-%E7%B7%A8%E8%AD%AF-javascript/" data-tooltip="Webpack 4 學習筆記(二) - 使用 Babel 編譯 JavaScript">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -440,7 +524,7 @@ s.setAttribute('data-timestamp', +new Date());
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/09/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E3%84%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E6%89%93%E5%8C%85-js-%E6%A8%A1%E7%B5%84/" data-tooltip="Webpack 學習筆記(ㄧ) - 安裝與打包 JS 模組">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E5%9B%9B-%E7%B7%A8%E8%AD%AF-scss-%E6%96%87%E4%BB%B6/" data-tooltip="Webpack 4 學習筆記(四) - 編譯 SCSS 文件">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -458,13 +542,13 @@ s.setAttribute('data-timestamp', +new Date());
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/09/npx-npm-package-executor/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://kencc.github.io/2019/10/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -494,13 +578,13 @@ s.setAttribute('data-timestamp', +new Date());
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkencc.github.io%2F2019%2F10%2Fwebpack-4-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E4%25BA%2594-%25E4%25BD%25BF%25E7%2594%25A8-postcss-%25E8%2599%2595%25E7%2590%2586-css%2F">
           <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F09%2Fnpx-npm-package-executor%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fkencc.github.io%2F2019%2F10%2Fwebpack-4-%25E5%25AD%25B8%25E7%25BF%2592%25E7%25AD%2586%25E8%25A8%2598%25E4%25BA%2594-%25E4%25BD%25BF%25E7%2594%25A8-postcss-%25E8%2599%2595%25E7%2590%2586-css%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -595,9 +679,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/kencc.github.io\/2019\/09\/npx-npm-package-executor\/';
+          this.page.url = 'https:\/\/kencc.github.io\/2019\/10\/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css\/';
           
-            this.page.identifier = '\/2019\/09\/npx-npm-package-executor\/'
+            this.page.identifier = '\/2019\/10\/webpack-4-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%E4%BA%94-%E4%BD%BF%E7%94%A8-postcss-%E8%99%95%E7%90%86-css\/'
           
         };
         (function() {
